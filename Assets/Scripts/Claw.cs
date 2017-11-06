@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Claw : MonoBehaviour {
 
 	public Transform origin;
@@ -16,6 +17,15 @@ public class Claw : MonoBehaviour {
 	private bool hitJewel;
 	private bool retracting;
 
+	//audio
+	public AudioClip joySound;
+	public AudioClip sadSound;
+
+
+	void Start ()
+	{
+
+	}
 
 	void Awake () {
 		lineRenderer = GetComponent<LineRenderer>();
@@ -35,8 +45,9 @@ public class Claw : MonoBehaviour {
 				hitJewel = false;
 
 			}
-			Debug.Log("destroy " + childObject);
+
 			Destroy(childObject);
+			LaunchStory ();
 			gameObject.SetActive(false);
 		}
 		
@@ -52,17 +63,27 @@ public class Claw : MonoBehaviour {
 	{
 		retracting = true;
 		target = origin.position;
-		//Debug.Log("hit other");
 
 		if (other.gameObject.CompareTag ("Jewel")) {
-			//Debug.Log("hit jewel");
 			hitJewel = true;
+			AudioSource audio = GetComponent<AudioSource>();
+			audio.PlayOneShot(sadSound);
+
 			childObject = other.gameObject;
-			Debug.Log("attach " + childObject);
 			other.transform.SetParent (this.transform);
 		} 
+		else if (other.gameObject.CompareTag ("Rock")) {
+			hitJewel = true;
+			AudioSource audio = GetComponent<AudioSource>();
+			audio.PlayOneShot(joySound);
+			childObject = other.gameObject;
+			other.transform.SetParent (this.transform);
+		} 
+	}
 
-
+	void LaunchStory ()
+	{
+		Debug.Log("Launch Story");
 
 	}
 }

@@ -7,6 +7,7 @@ public class Gun : MonoBehaviour {
 	public bool isShooting;
 	public Animator minerAnimator;
 	public Claw clawScript;
+
 	
 	// Update is called once per frame
 	void Update ()
