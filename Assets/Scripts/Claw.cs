@@ -11,19 +11,27 @@ public class Claw : MonoBehaviour {
 	// add ref to scoremanager variable;
 
 	private Vector3 target;
-//	private int jewelValue = 100;
+//	private int SadValue = 100;
 	private GameObject childObject;
 	private LineRenderer lineRenderer;
-	private bool hitJewel;
+	private bool hitSad;
+	private bool hitJoy;
 	private bool retracting;
 
 	//audio
 	public AudioClip joySound;
 	public AudioClip sadSound;
 
+	//2D story
+	public GameObject storyboard;
+	public GameObject joyText;
+	public GameObject sadText;
+	private bool deployed;
+	public bool isStorytelling;
 
 	void Start ()
 	{
+//		story.SetActive(false);
 
 	}
 
@@ -40,17 +48,19 @@ public class Claw : MonoBehaviour {
 		lineRenderer.SetPosition (0, origin.position);
 		lineRenderer.SetPosition (1, transform.position);
 		if (transform.position == origin.position && retracting) {
-			gun.CollectedObject ();
-			if (hitJewel) {
-				hitJewel = false;
-
-			}
-
-			Destroy(childObject);
 			LaunchStory ();
-			gameObject.SetActive(false);
+			if (!isStorytelling) {
+				gun.CollectedObject ();
+				if (hitSad) {
+					hitSad = false;
+				}
+				if (hitJoy) {
+					hitJoy = false;
+				}
+				Destroy (childObject);
+				gameObject.SetActive (false);
+			}
 		}
-		
 	}
 
 	public void ClawTarget (Vector3 pos)
@@ -64,16 +74,16 @@ public class Claw : MonoBehaviour {
 		retracting = true;
 		target = origin.position;
 
-		if (other.gameObject.CompareTag ("Jewel")) {
-			hitJewel = true;
+		if (other.gameObject.CompareTag ("Sad")) {
+			hitSad = true;
 			AudioSource audio = GetComponent<AudioSource>();
 			audio.PlayOneShot(sadSound);
 
 			childObject = other.gameObject;
 			other.transform.SetParent (this.transform);
 		} 
-		else if (other.gameObject.CompareTag ("Rock")) {
-			hitJewel = true;
+		else if (other.gameObject.CompareTag ("Joy")) {
+			hitJoy = true;
 			AudioSource audio = GetComponent<AudioSource>();
 			audio.PlayOneShot(joySound);
 			childObject = other.gameObject;
@@ -83,7 +93,31 @@ public class Claw : MonoBehaviour {
 
 	void LaunchStory ()
 	{
-		Debug.Log("Launch Story");
+		Debug.Log ("Launch Story");
+		isStorytelling = true;
+		if (hitJoy || hitSad) {
+			if (hitJoy) {
+				joyText.SetActive (true);
+			} else if (hitSad) {
+				sadText.SetActive (true);
+			} 
+			storyboard.SetActive (true);
+			CloseStoryboard ();
+		} else {
+			isStorytelling = false;
+		}
+
+	}
+
+	void CloseStoryboard ()
+	{
+		if (Input.GetKeyDown(KeyCode.Return)) {
+			Debug.Log ("return is pressed");
+			isStorytelling = false;
+			storyboard.SetActive (false);
+			joyText.SetActive (false);
+			sadText.SetActive (false);
+		}
 
 	}
 }

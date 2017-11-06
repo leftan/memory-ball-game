@@ -32,6 +32,11 @@ public class Gun : MonoBehaviour {
 		}
 	}
 
+//	public void StoryState ()
+//	{
+//		isShooting = false;
+//		minerAnimator.speed = 0;
+//	}
 
 	public void CollectedObject ()
 	{
