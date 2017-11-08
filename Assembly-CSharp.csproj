@@ -55,6 +55,7 @@
      <Compile Include="Assets\GemExample\Scripts\Orbit.cs" />
      <Compile Include="Assets\Scripts\Claw.cs" />
      <Compile Include="Assets\Scripts\Gun.cs" />
+     <None Include="Assets\Fonts\Montserrat\OFL.txt" />
      <None Include="Assets\Gem\Shaders\Gem.shader" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
