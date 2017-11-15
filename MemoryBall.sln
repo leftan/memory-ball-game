@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemoryBall", "Assembly-CSharp.csproj", "{5067F37C-86AB-0228-DD86-D3F9B1325206}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemoryBall", "Assembly-CSharp-Editor.csproj", "{DD786C7D-4771-74CC-8470-A5C027D60350}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{5067F37C-86AB-0228-DD86-D3F9B1325206}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5067F37C-86AB-0228-DD86-D3F9B1325206}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5067F37C-86AB-0228-DD86-D3F9B1325206}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD786C7D-4771-74CC-8470-A5C027D60350}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD786C7D-4771-74CC-8470-A5C027D60350}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD786C7D-4771-74CC-8470-A5C027D60350}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD786C7D-4771-74CC-8470-A5C027D60350}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
